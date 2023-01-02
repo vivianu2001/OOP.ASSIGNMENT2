@@ -8,10 +8,33 @@ import java.util.concurrent.ThreadPoolExecutor;
 public class Ex2_1 {
 
     public static void main(String[] args)  {
-        String[] filenames = createTextFiles(2, 2, 100);
-        System.out.println(getNumOfLines(filenames));
-        System.out.println(getNumOfLinesThreads(filenames));
-        System.out.println(getNumOfLinesThreadPool(filenames));
+
+
+
+        String[] filenames = createTextFiles(20 ,2, 500);
+        long starT,endT;
+        int linesNum;
+
+        starT=System.currentTimeMillis();
+        linesNum=getNumOfLines(filenames);
+        endT=System.currentTimeMillis();
+        System.out.println("The total run time of getNumOfLine to count "+ linesNum + " lines  is:" + (endT-starT) + "MS");
+
+
+
+        starT=System.currentTimeMillis();
+        linesNum=getNumOfLinesThreads(filenames);
+        endT=System.currentTimeMillis();
+        System.out.println("The total run time of getNumOfLinesThreads using Threads to count "+ linesNum + " lines  is:" + (endT-starT) + "MS");
+
+
+
+        starT=System.currentTimeMillis();
+        linesNum=getNumOfLinesThreads(filenames);
+        endT=System.currentTimeMillis();
+        System.out.println("The total run time of getNumOfLinesThreadPool using ThreadPool to count "+ linesNum + " lines  is:" + (endT-starT) + "MS");
+
+
 
     }
 
@@ -29,16 +52,25 @@ public class Ex2_1 {
                 if (fileCreate) {
                     filenames[i] = fileName;
                     System.out.println("File created: " + fileName);
+
+                    PrintWriter writer = new PrintWriter(file);
+                    int numberOfLines = random.nextInt(bound);
+                    for (int j = 0; j < numberOfLines; j++) {
+                        writer.println("Hello line: " + j);
+                    }
+                    writer.close();
+
                 } else {
                     System.out.println("File already exists");
-                    //break;
+                    filenames[i] = fileName;
+
                 }
-                PrintWriter writer = new PrintWriter(file);
-                int numberOfLines = random.nextInt(bound);
-                for (int j = 0; j < numberOfLines; j++) {
-                    writer.println("Hello line: " + j);
-                }
-                writer.close();
+//                PrintWriter writer = new PrintWriter(file);
+//                int numberOfLines = random.nextInt(bound);
+//                for (int j = 0; j < numberOfLines; j++) {
+//                    writer.println("Hello line: " + j);
+//                }
+//                writer.close();
 
             } catch (IOException e) {
                 throw new RuntimeException(e);
