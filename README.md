@@ -18,3 +18,6 @@ sum the total lines.
 This function using threads separately for each file,the process is correct organized and faster.
 But in large numbers of files,make large number of thread  might have two negative effects. First, when a fixed quantity of work is divided among too many threads, each thread receives so little work that the overhead associated with initiating and stopping threads overwhelms the productive work. Second, running an excessive number of threads results in overhead due to the way they compete for limited hardware resources.
 
+
+# Uml Diagram
+![](C:\Users\lbala\OOP.png)
