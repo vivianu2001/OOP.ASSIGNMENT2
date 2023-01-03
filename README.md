@@ -28,11 +28,13 @@ Using thread pool allow us to minimize multiple threads managing .
 
 # Conclusion
 
-Test for 2000 files 2 seed 1500 bound:
+Experiment  on local machine :
+
+ Test for 2000 files 2 seed 1500 bound:
 
 <img width="801" alt="Screen Shot 2023-01-04 at 0 08 56" src="https://user-images.githubusercontent.com/118671563/210451081-5e6f92da-e07f-46ca-88c6-a9981a8b3394.png">
 
-30 files 2 seed 120 bound:
+ 30 files 2 seed 120 bound:
 
 
 <img width="757" alt="Screen Shot 2023-01-04 at 0 12 02" src="https://user-images.githubusercontent.com/118671563/210451345-abf77014-9f00-49c2-9a07-801f4f6f4af9.png">
@@ -40,6 +42,7 @@ Test for 2000 files 2 seed 1500 bound:
 
 While creating many files with many lines thread pool is good idea to mange all files reading.Above in the example the threadpool much efficient.
 But when we create small number of files the time of thread pool not much efficient.
+We can assume that sometimes seprate threads are more efficient.
 It may happen because when a task is completed, the thread that was executing it becomes idle. If a new task is assigned to the same thread, it will have to switch back into "working" mode, which can involve some overhead. In a thread pool, this context switching can happen more frequently, which can reduce efficiency.
 
 
