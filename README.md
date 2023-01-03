@@ -26,6 +26,11 @@ Using thread pool allow us to minimize multiple threads managing .
 
 
 
+# Conclusion
+
+
+
+
 
 # Uml Diagram
 ![img.png](img.png)
