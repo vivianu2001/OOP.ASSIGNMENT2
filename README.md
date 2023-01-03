@@ -19,5 +19,13 @@ This function using threads separately for each file,the process is correct orga
 But in large numbers of files,make large number of thread  might have two negative effects. First, when a fixed quantity of work is divided among too many threads, each thread receives so little work that the overhead associated with initiating and stopping threads overwhelms the productive work. Second, running an excessive number of threads results in overhead due to the way they compete for limited hardware resources.
 
 
+# getgetNumOfLinesThreadPool
+This method uses a thread pool to count number of lines in each file with LineCounterThreadpool for each file.
+tasks are object of LineCounterThreadpool,for calculate total linnes in each file.all sumbit,returns the number of lines in file.Finally the thread pool shutdowns and wait to all tasks to complete.
+Using thread pool allow us to minimize multiple threads managing .
+
+
+
+
 # Uml Diagram
 ![img.png](img.png)
