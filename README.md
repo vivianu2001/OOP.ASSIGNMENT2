@@ -28,7 +28,9 @@ Using thread pool allow us to minimize multiple threads managing .
 
 # Conclusion
 
+Test for 2000 files 2 seed 1500 bound:
 
+<img width="801" alt="Screen Shot 2023-01-04 at 0 08 56" src="https://user-images.githubusercontent.com/118671563/210451081-5e6f92da-e07f-46ca-88c6-a9981a8b3394.png">
 
 
 
