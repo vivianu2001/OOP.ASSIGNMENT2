@@ -7,6 +7,12 @@ import java.util.concurrent.ThreadPoolExecutor;
 
 public class Ex2_1 {
 
+    /**
+     * The main method of the program. Creates a number of text files, counts the number of lines in the files using
+     * different methods, and measures the run time of each method.
+     *
+     * @param args command line arguments (not used)
+     */
     public static void main(String[] args)  {
 
 
@@ -38,6 +44,16 @@ public class Ex2_1 {
 
     }
 
+    /**
+     * Creates n text files with random number of lines.
+     * The file names are in the form "File_i.txt" where i is the index of the file.
+     * The number of lines in each file is a random integer between 0 and bound-1.
+     *
+     * @param n the number of files to create
+     * @param seed the seed for the random number generator
+     * @param bound the upper bound for the number of lines in each file
+     * @return an array of the file names
+     */
     public static String[] createTextFiles(int n, int seed, int bound) {
         String fileNamePrefix = "File_";
         String fileNameSuffix = ".txt";
@@ -65,21 +81,18 @@ public class Ex2_1 {
                     filenames[i] = fileName;
 
                 }
-//                PrintWriter writer = new PrintWriter(file);
-//                int numberOfLines = random.nextInt(bound);
-//                for (int j = 0; j < numberOfLines; j++) {
-//                    writer.println("Hello line: " + j);
-//                }
-//                writer.close();
-
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         }
         return filenames;
     }
-
-
+    /**
+     * Counts the number of lines in the given files.
+     *
+     * @param fileNames the names of the files
+     * @return the total number of lines in the files
+     */
     public static int getNumOfLines(String[] fileNames) {
         int lines = 0;
         for (int i = 0; i < fileNames.length; i++) {
@@ -98,8 +111,12 @@ public class Ex2_1 {
         return lines;
 
     }
-
-
+    /**
+     * Counts the number of lines in the given files using multiple threads.
+     *
+     * @param fileNames the names of the files
+     * @return the total number of lines in the files
+     */
     static public int getNumOfLinesThreads(String[] fileNames) {
         LinesCounterThread[] threads = new LinesCounterThread[fileNames.length];
         int totalnumberoflines = 0;
@@ -122,10 +139,12 @@ public class Ex2_1 {
 
 
     }
-
-
-
-
+    /**
+     * Counts the number of lines in the given files using a thread pool.
+     *
+     * @param fileNames the names of the files
+     * @return the total number of lines in the files
+     */
     public static int getNumOfLinesThreadPool(String[] fileNames)  {
         ThreadPoolExecutor executor=(ThreadPoolExecutor) Executors.newFixedThreadPool(fileNames.length) ;
         LineCounterThreadpool[] tasks=new LineCounterThreadpool[fileNames.length];
