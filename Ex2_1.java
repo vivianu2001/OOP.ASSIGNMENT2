@@ -15,7 +15,7 @@ public class Ex2_1 {
      */
     public static void main(String[] args)  {
         Ex2_1 ex2_1 = new Ex2_1();
-        String[] filenames = ex2_1.createTextFiles(20 ,2, 500);
+        String[] filenames = ex2_1.createTextFiles(50 ,5, 66666666);
         long starT,endT;
         int linesNum;
 
