@@ -9,7 +9,7 @@ import java.io.IOException;
  */
 public class LinesCounterThread extends Thread {
 private  String filename;
-private int totalines;
+private static int totalines;
 
     /**
      * Creates a new `LinesCounterThread` object for the given file.

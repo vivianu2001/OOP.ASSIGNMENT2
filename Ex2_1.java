@@ -14,12 +14,11 @@ public class Ex2_1 {
      * @param args command line arguments (not used)
      */
     public static void main(String[] args)  {
-
-
-
-        String[] filenames = createTextFiles(20 ,2, 500);
+        Ex2_1 ex2_1 = new Ex2_1();
+        String[] filenames = ex2_1.createTextFiles(20 ,2, 500);
         long starT,endT;
         int linesNum;
+
 
         starT=System.currentTimeMillis();
         linesNum=getNumOfLines(filenames);
@@ -29,14 +28,14 @@ public class Ex2_1 {
 
 
         starT=System.currentTimeMillis();
-        linesNum=getNumOfLinesThreads(filenames);
+        linesNum=ex2_1.getNumOfLinesThreads(filenames);
         endT=System.currentTimeMillis();
         System.out.println("The total run time of getNumOfLinesThreads using Threads to count "+ linesNum + " lines  is:" + (endT-starT) + "MS");
 
 
 
         starT=System.currentTimeMillis();
-        linesNum=getNumOfLinesThreads(filenames);
+        linesNum=ex2_1.getNumOfLinesThreadPool(filenames);
         endT=System.currentTimeMillis();
         System.out.println("The total run time of getNumOfLinesThreadPool using ThreadPool to count "+ linesNum + " lines  is:" + (endT-starT) + "MS");
 
@@ -117,7 +116,7 @@ public class Ex2_1 {
      * @param fileNames the names of the files
      * @return the total number of lines in the files
      */
-    static public int getNumOfLinesThreads(String[] fileNames) {
+    public int getNumOfLinesThreads(String[] fileNames) {
         LinesCounterThread[] threads = new LinesCounterThread[fileNames.length];
         int totalnumberoflines = 0;
         for (int i = 0; i < threads.length; i++) {
@@ -128,11 +127,12 @@ public class Ex2_1 {
         for (LinesCounterThread t : threads) {
             try {
                 t.join();
-                totalnumberoflines = totalnumberoflines + t.getTotalines();
+                totalnumberoflines = (int)(totalnumberoflines + t.getTotalines());
 
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+
 
         }
         return totalnumberoflines;
@@ -145,7 +145,7 @@ public class Ex2_1 {
      * @param fileNames the names of the files
      * @return the total number of lines in the files
      */
-    public static int getNumOfLinesThreadPool(String[] fileNames)  {
+    public int getNumOfLinesThreadPool(String[] fileNames)  {
         ThreadPoolExecutor executor=(ThreadPoolExecutor) Executors.newFixedThreadPool(fileNames.length) ;
         LineCounterThreadpool[] tasks=new LineCounterThreadpool[fileNames.length];
         Future<Integer>[] results= new Future[fileNames.length];
